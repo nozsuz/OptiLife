@@ -91,7 +91,7 @@ const SettingsPage = () => {
                     <RadioGroup row defaultValue={mockData.user.goal}>
                         <FormControlLabel value="health" control={<Radio />} label="健康維持" />
                         <FormControlLabel value="weightloss" control={<Radio />} label="減量" />
-                        <FormControlLabel value="muscle" control={<Radio />} label="���力増強" />
+                        <FormControlLabel value="muscle" control={<Radio />} label="筋力増強" />
                     </RadioGroup>
                 </FormControl>
             </CardContent>
