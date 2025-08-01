@@ -11,6 +11,11 @@ export const mockData = {
         unit: 'kg',
     }
   },
+  condition: {
+    sleep: { value: "7h30m", source: "HealthKit" },
+    steps: { value: "8,210", source: "HealthKit" },
+    heartRate: { value: "68bpm", source: "HealthKit" },
+  },
   healthMetrics: {
       heartRate: 72,
       sleepScore: 85,

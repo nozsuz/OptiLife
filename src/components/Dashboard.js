@@ -35,21 +35,30 @@ const CardTitle = ({ icon, title }) => (
 );
 
 const ConditionSelector = () => {
-    const [mood, setMood] = useState('happy');
+    const { condition } = mockData;
+    const conditionItems = [
+        { key: 'sleep', icon: <NightsStayIcon />, label: '睡眠' },
+        { key: 'steps', icon: <FitnessCenterIcon />, label: '歩数' },
+        { key: 'heartRate', icon: <BoltIcon />, label: '心拍' },
+    ];
+
     return (
         <Paper sx={{ ...cardStyles, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap' }}>
             <Box sx={{ mb: { xs: 2, sm: 0 } }}>
-                <Typography variant="h6" component="h3" sx={{ fontWeight: 600 }}>今日のコンディション</Typography>
+                <Typography variant="h6" component="h3" sx={{ fontWeight: 600 }}>今日の自動連携データ</Typography>
                 <Typography variant="body2" sx={{ display: 'flex', alignItems: 'center', gap: 0.5, color: 'text.secondary' }}>
                     <LocalFireDepartmentIcon sx={{ color: '#ff6b6b' }} /> 今日のタスク 5日連続達成中
                 </Typography>
             </Box>
-            <ToggleButtonGroup value={mood} exclusive onChange={(e, newMood) => setMood(newMood)} sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                <ToggleButton value="happy" sx={{ flexDirection: 'column', borderRadius: '12px' }}><MoodIcon /><Typography variant="caption">気分</Typography></ToggleButton>
-                <ToggleButton value="energetic" sx={{ flexDirection: 'column', borderRadius: '12px' }}><BoltIcon /><Typography variant="caption">活力</Typography></ToggleButton>
-                <ToggleButton value="sleepy" sx={{ flexDirection: 'column', borderRadius: '12px' }}><NightsStayIcon /><Typography variant="caption">睡眠</Typography></ToggleButton>
-                <ToggleButton value="fit" sx={{ flexDirection: 'column', borderRadius: '12px' }}><FitnessCenterIcon /><Typography variant="caption">集中</Typography></ToggleButton>
-            </ToggleButtonGroup>
+            <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                {conditionItems.map(item => (
+                    <Box key={item.key} sx={{ textAlign: 'center' }}>
+                        {item.icon}
+                        <Typography variant="body1" sx={{ fontWeight: 600 }}>{condition[item.key].value}</Typography>
+                        <Typography variant="caption" color="text.secondary">{item.label} ({condition[item.key].source})</Typography>
+                    </Box>
+                ))}
+            </Box>
         </Paper>
     );
 };
